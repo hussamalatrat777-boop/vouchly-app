@@ -222,18 +222,38 @@ export default function App() {
               </button>
             </div>
 
-            <div style={{ width: "100%", height: 390, borderRadius: 12, overflow: "hidden", border: `1px solid ${brd}`, background: "#ffffff" }}>
-              <iframe
-                src={
-                  pm === "card"
-                    ? "https://swapped.com" + "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5&lockAmount=true"
-                    : payUrl
+                        <div style={{ background: bg, padding: 16, borderRadius: 14, border: `1px solid ${brd}`, textAlign: "center" }}>
+              <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 6 }}>
+                {pm === "card"
+                  ? (ar ? "الدفع الفوري بالبطاقة البنكية (Visa / Mastercard)" : "Instant Card Payment (Visa / Mastercard)")
+                  : (ar ? "الدفع المباشر بالعملات الرقمية (USDT / Crypto)" : "Direct Crypto Payment (USDT / Crypto)")}
+              </div>
+              <p style={{ margin: "0 0 14px", fontSize: 11.5, color: sub, lineHeight: 1.5 }}>
+                {pm === "card"
+                  ? (ar ? "سيتم توجيهك إلى بوابة الدفع المشفرة لإدخال بيانات بطاقتك وتفعيل حسابك فوراً." : "You will be redirected to our encrypted card processor to complete your $29.00 payment.")
+                  : (ar ? "ادفع عبر شبكة TRC20 أو أي عملة رقمية وسيتم تفعيل اشتراكك مدى الحياة تلقائياً." : "Pay via USDT (TRC20) or any crypto for instant lifetime activation.")}
+              </p>
+              <button
+                onClick={() =>
+                  window.open(
+                    pm === "card"
+                                            ? "https://widget.swapped.com" + "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5&lockAmount=true"
+
+                      : payUrl,
+                    "_blank"
+                  )
                 }
-                title="Vouchly Secure Checkout"
-                style={{ width: "100%", height: "100%", border: "none" }}
-                allow="payment"
-              />
+                style={{
+                  width: "100%", padding: "12px 16px", borderRadius: 10, border: "none",
+                  background: pm === "card" ? "linear-gradient(135deg,#4f46e5,#7c3aed)" : "#059669",
+                  color: "#ffffff", fontWeight: 800, fontSize: 14, cursor: "pointer",
+                  boxShadow: "0 4px 12px rgba(79,70,229,0.3)"
+                }}
+              >
+                {ar ? "متابعة الدفع الآمن ($29.00) ➔" : "Proceed to Secure Payment ($29.00) ➔"}
+              </button>
             </div>
+
 
             <div style={{ marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 10.5, color: sub }}>
               <span>🔒 {ar ? "دفع مشفر وآمن 256-bit SSL" : "256-bit SSL Encrypted Checkout"}</span>
