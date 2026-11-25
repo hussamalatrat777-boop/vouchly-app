@@ -176,88 +176,57 @@ export default function App() {
         </div>
       </main>
 
-            {pay && (
+                      {pay && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,0.8)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 14, zIndex: 50 }}>
-          <div style={{ background: card, color: txt, padding: 20, borderRadius: 20, maxWidth: 440, width: "100%", border: `1px solid ${brd}`, boxShadow: "0 20px 40px rgba(0,0,0,0.4)", maxHeight: "92vh", overflowY: "auto" }}>
+          <div style={{ background: card, color: txt, padding: 22, borderRadius: 20, maxWidth: 420, width: "100%", border: `1px solid ${brd}`, boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
             
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ background: "linear-gradient(135deg,#4f46e5,#7c3aed)", color: "#fff", padding: "4px 8px", borderRadius: 8, fontSize: 12, fontWeight: 800 }}>★</span>
-                <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800 }}>{ar ? "إتمام الترقية إلى Vouchly Pro" : "Complete Vouchly Pro Upgrade"}</h3>
+                <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800 }}>{ar ? "الترقية إلى Vouchly Pro" : "Upgrade to Vouchly Pro"}</h3>
               </div>
               <button onClick={() => setPay(false)} style={{ background: bg, color: txt, border: `1px solid ${brd}`, width: 28, height: 28, borderRadius: 8, cursor: "pointer", fontWeight: 700 }}>✕</button>
             </div>
 
-            <div style={{ background: bg, padding: "12px 14px", borderRadius: 12, border: `1px solid ${brd}`, display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+            <div style={{ background: bg, padding: "14px", borderRadius: 12, border: `1px solid ${brd}`, display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
               <div>
-                <div style={{ fontSize: 13, fontWeight: 700 }}>{ar ? "ترخيص مدى الحياة (دفعة واحدة)" : "Lifetime Pro License"}</div>
-                <div style={{ fontSize: 11, color: "#10b981", marginTop: 2 }}>✓ {ar ? "تفعيل فوري + ضمان استرداد 14 يوماً" : "Instant activation + 14-day guarantee"}</div>
+                <div style={{ fontSize: 13.5, fontWeight: 700 }}>{ar ? "ترخيص مدى الحياة (دفعة واحدة)" : "Lifetime Pro License"}</div>
+                <div style={{ fontSize: 11, color: "#10b981", marginTop: 3 }}>✓ {ar ? "تفعيل فوري + ضمان استرداد 14 يوماً" : "Instant activation + 14-day money-back"}</div>
               </div>
               <div style={{ textAlign: ar ? "left" : "right" }}>
                 <div style={{ fontSize: 22, fontWeight: 900, color: "#4f46e5" }}>$29.00</div>
-                <div style={{ fontSize: 10, color: sub, textDecoration: "line-through" }}>$99.00</div>
+                <div style={{ fontSize: 10.5, color: sub, textDecoration: "line-through" }}>$99.00</div>
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, background: bg, padding: 4, borderRadius: 12, marginBottom: 12, border: `1px solid ${brd}` }}>
-              <button
-                onClick={() => setPm("card")}
-                style={{
-                  padding: "8px", borderRadius: 8, border: "none", fontSize: 12, fontWeight: 700, cursor: "pointer",
-                  background: pm === "card" ? "#4f46e5" : "transparent",
-                  color: pm === "card" ? "#ffffff" : sub
-                }}
-              >
-                💳 {ar ? "بطاقة بنكية (Visa/MC)" : "Credit / Debit Card"}
-              </button>
-              <button
-                onClick={() => setPm("crypto")}
-                style={{
-                  padding: "8px", borderRadius: 8, border: "none", fontSize: 12, fontWeight: 700, cursor: "pointer",
-                  background: pm === "crypto" ? "#059669" : "transparent",
-                  color: pm === "crypto" ? "#ffffff" : sub
-                }}
-              >
-                🪙 {ar ? "عملات رقمية (USDT)" : "Crypto (USDT)"}
-              </button>
-            </div>
-
-                        <div style={{ background: bg, padding: 16, borderRadius: 14, border: `1px solid ${brd}`, textAlign: "center" }}>
+            <div style={{ background: bg, padding: 16, borderRadius: 14, border: `1px solid ${brd}`, textAlign: "center" }}>
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 6 }}>
-                {pm === "card"
-                  ? (ar ? "الدفع الفوري بالبطاقة البنكية (Visa / Mastercard)" : "Instant Card Payment (Visa / Mastercard)")
-                  : (ar ? "الدفع المباشر بالعملات الرقمية (USDT / Crypto)" : "Direct Crypto Payment (USDT / Crypto)")}
+                {ar ? "الدفع الآمن بالبطاقة البنكية" : "Secure Card Checkout"}
               </div>
               <p style={{ margin: "0 0 14px", fontSize: 11.5, color: sub, lineHeight: 1.5 }}>
-                {pm === "card"
-                  ? (ar ? "سيتم توجيهك إلى بوابة الدفع المشفرة لإدخال بيانات بطاقتك وتفعيل حسابك فوراً." : "You will be redirected to our encrypted card processor to complete your $29.00 payment.")
-                  : (ar ? "ادفع عبر شبكة TRC20 أو أي عملة رقمية وسيتم تفعيل اشتراكك مدى الحياة تلقائياً." : "Pay via USDT (TRC20) or any crypto for instant lifetime activation.")}
+                {ar ? "ادفع ببطاقة Visa أو Mastercard لإتمام عملية الشراء وتفعيل كافة مميزات Pro فوراً." : "Pay securely with Visa or Mastercard to unlock all Pro features immediately."}
               </p>
               <button
                 onClick={() =>
                   window.open(
-                    pm === "card"
-                                            ? "https://widget.swapped.com" + "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5&lockAmount=true"
-
-                      : payUrl,
+                    "https://swapped.com" + "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5&lockAmount=true",
                     "_blank"
                   )
                 }
                 style={{
                   width: "100%", padding: "12px 16px", borderRadius: 10, border: "none",
-                  background: pm === "card" ? "linear-gradient(135deg,#4f46e5,#7c3aed)" : "#059669",
+                  background: "linear-gradient(135deg,#4f46e5,#7c3aed)",
                   color: "#ffffff", fontWeight: 800, fontSize: 14, cursor: "pointer",
                   boxShadow: "0 4px 12px rgba(79,70,229,0.3)"
                 }}
               >
-                {ar ? "متابعة الدفع الآمن ($29.00) ➔" : "Proceed to Secure Payment ($29.00) ➔"}
+                {ar ? "إتمام الدفع بالبطاقة ($29.00) ➔" : "Pay with Card ($29.00) ➔"}
               </button>
             </div>
 
-
-            <div style={{ marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 10.5, color: sub }}>
-              <span>🔒 {ar ? "دفع مشفر وآمن 256-bit SSL" : "256-bit SSL Encrypted Checkout"}</span>
-              <span>Visa • Mastercard • USDT</span>
+            <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 10.5, color: sub }}>
+              <span>🔒 {ar ? "تشفير بنكي آمن 256-bit SSL" : "256-bit SSL Encrypted"}</span>
+              <span>Visa • Mastercard</span>
             </div>
 
           </div>
