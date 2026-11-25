@@ -13,6 +13,7 @@ export default function App() {
   const [r, setR] = useState(5);
   const [pay, setPay] = useState(false);
   const [cp, setCp] = useState(false);
+  const [pm, setPm] = useState<"card" | "crypto">("card");
 
   useEffect(() => {
     const s = localStorage.getItem("vouchly_v1");
@@ -175,28 +176,74 @@ export default function App() {
         </div>
       </main>
 
-      {pay && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,0.7)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16, zIndex: 50 }}>
-          <div style={{ background: card, color: txt, padding: 22, borderRadius: 20, maxWidth: 360, width: "100%", border: `1px solid ${brd}` }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-              <h3 style={{ margin: 0, fontSize: 17, fontWeight: 800 }}>{ar ? "ترقية Vouchly مدى الحياة" : "Vouchly Lifetime Pro"}</h3>
-              <button onClick={() => setPay(false)} style={{ background: bg, color: txt, border: "none", width: 28, height: 28, borderRadius: "50%", cursor: "pointer" }}>✕</button>
+            {pay && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,0.8)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 14, zIndex: 50 }}>
+          <div style={{ background: card, color: txt, padding: 20, borderRadius: 20, maxWidth: 440, width: "100%", border: `1px solid ${brd}`, boxShadow: "0 20px 40px rgba(0,0,0,0.4)", maxHeight: "92vh", overflowY: "auto" }}>
+            
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ background: "linear-gradient(135deg,#4f46e5,#7c3aed)", color: "#fff", padding: "4px 8px", borderRadius: 8, fontSize: 12, fontWeight: 800 }}>★</span>
+                <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800 }}>{ar ? "إتمام الترقية إلى Vouchly Pro" : "Complete Vouchly Pro Upgrade"}</h3>
+              </div>
+              <button onClick={() => setPay(false)} style={{ background: bg, color: txt, border: `1px solid ${brd}`, width: 28, height: 28, borderRadius: 8, cursor: "pointer", fontWeight: 700 }}>✕</button>
             </div>
-            <div style={{ background: "#eef2ff", padding: 14, borderRadius: 14, textAlign: "center", marginBottom: 12 }}>
-              <div style={{ fontSize: 32, fontWeight: 900, color: "#4f46e5" }}>$29</div>
-              <div style={{ fontSize: 11, color: "#4338ca", fontWeight: 600 }}>{ar ? "دفعة واحدة مدى الحياة • بدون اشتراكات" : "One-time payment • Unlimited reviews forever"}</div>
+
+            <div style={{ background: bg, padding: "12px 14px", borderRadius: 12, border: `1px solid ${brd}`, display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700 }}>{ar ? "ترخيص مدى الحياة (دفعة واحدة)" : "Lifetime Pro License"}</div>
+                <div style={{ fontSize: 11, color: "#10b981", marginTop: 2 }}>✓ {ar ? "تفعيل فوري + ضمان استرداد 14 يوماً" : "Instant activation + 14-day guarantee"}</div>
+              </div>
+              <div style={{ textAlign: ar ? "left" : "right" }}>
+                <div style={{ fontSize: 22, fontWeight: 900, color: "#4f46e5" }}>$29.00</div>
+                <div style={{ fontSize: 10, color: sub, textDecoration: "line-through" }}>$99.00</div>
+              </div>
             </div>
-            <div style={{ fontSize: 11, color: sub, marginBottom: 12, lineHeight: 1.6 }}>
-                            ✓ {ar ? "تفعيل فوري ومباشر" : "Instant activation"}<br />
-              ✓ {ar ? "إزالة قيود التقييمات بالكامل" : "Remove all review limits"}<br />
-              ✓ {ar ? "ضمان استرجاع خلال 14 يوماً" : "14-day money-back guarantee"}
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, background: bg, padding: 4, borderRadius: 12, marginBottom: 12, border: `1px solid ${brd}` }}>
+              <button
+                onClick={() => setPm("card")}
+                style={{
+                  padding: "8px", borderRadius: 8, border: "none", fontSize: 12, fontWeight: 700, cursor: "pointer",
+                  background: pm === "card" ? "#4f46e5" : "transparent",
+                  color: pm === "card" ? "#ffffff" : sub
+                }}
+              >
+                💳 {ar ? "بطاقة بنكية (Visa/MC)" : "Credit / Debit Card"}
+              </button>
+              <button
+                onClick={() => setPm("crypto")}
+                style={{
+                  padding: "8px", borderRadius: 8, border: "none", fontSize: 12, fontWeight: 700, cursor: "pointer",
+                  background: pm === "crypto" ? "#059669" : "transparent",
+                  color: pm === "crypto" ? "#ffffff" : sub
+                }}
+              >
+                🪙 {ar ? "عملات رقمية (USDT)" : "Crypto (USDT)"}
+              </button>
             </div>
-            <button onClick={() => window.open(payUrl, "_blank")} style={{ width: "100%", background: "#4f46e5", color: "#fff", border: "none", padding: 13, borderRadius: 11, fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
-              {ar ? "الدفع بالبطاقة الائتمانية (Visa / Mastercard) - $29" : "Pay with Credit Card (Visa / Mastercard) - $29"}
-            </button>
+
+            <div style={{ width: "100%", height: 390, borderRadius: 12, overflow: "hidden", border: `1px solid ${brd}`, background: "#ffffff" }}>
+              <iframe
+                src={
+                  pm === "card"
+                    ? "https://swapped.com" + "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5&lockAmount=true"
+                    : payUrl
+                }
+                title="Vouchly Secure Checkout"
+                style={{ width: "100%", height: "100%", border: "none" }}
+                allow="payment"
+              />
+            </div>
+
+            <div style={{ marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 10.5, color: sub }}>
+              <span>🔒 {ar ? "دفع مشفر وآمن 256-bit SSL" : "256-bit SSL Encrypted Checkout"}</span>
+              <span>Visa • Mastercard • USDT</span>
+            </div>
+
           </div>
         </div>
       )}
+
     </div>
   );
 }
