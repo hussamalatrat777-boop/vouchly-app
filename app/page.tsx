@@ -15,18 +15,17 @@ export default function App() {
   const [cp, setCp] = useState(false);
   const [pm, setPm] = useState<"card" | "crypto">("card");
 
-  useEffect(() => {
+    useEffect(() => {
     const s = localStorage.getItem("vouchly_v1");
-    if (s) setRevs(JSON.parse(s));
+    if (s) { const p = JSON.parse(s); if (p.length > 0) setRevs(p); }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("vouchly_v1", JSON.stringify(revs));
   }, [revs]);
+  const snip = '<script src="https://vouchly-app-ruby.' + 'vercel.app/widget.js" data-id="store_01"></script>';
 
-  const snip = '<script src="https://vouchly-app-ruby.vercel.app" data-id="store_01"></script>';
-      const payUrl = "https://widget.swapped.com/?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5";
-
+  const payUrl = "https://nowpayments.io" + "payment/?iid=4740015922";
 
 
   const add = (e: any) => {
@@ -57,7 +56,8 @@ export default function App() {
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ background: "linear-gradient(135deg,#4f46e5,#7c3aed)", color: "#fff", padding: "6px 10px", borderRadius: 10, fontWeight: 800 }}>★</span>
             <div>
-              <div style={{ fontWeight: 800, fontSize: 16 }}>Vouchly</div>
+                            <div translate="no" style={{ fontWeight: 800, fontSize: 16 }}>Vouchly</div>
+
               <div style={{ fontSize: 10, color: sub }}>{ar ? "نظام التقييمات الذكي" : "Smart Reviews SaaS"}</div>
             </div>
           </div>
