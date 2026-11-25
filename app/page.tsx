@@ -176,7 +176,7 @@ export default function App() {
         </div>
       </main>
 
-                      {pay && (
+                            {pay && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,0.8)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 14, zIndex: 50 }}>
           <div style={{ background: card, color: txt, padding: 22, borderRadius: 20, maxWidth: 420, width: "100%", border: `1px solid ${brd}`, boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
             
@@ -201,18 +201,19 @@ export default function App() {
 
             <div style={{ background: bg, padding: 16, borderRadius: 14, border: `1px solid ${brd}`, textAlign: "center" }}>
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 6 }}>
-                {ar ? "الدفع الآمن بالبطاقة البنكية" : "Secure Card Checkout"}
+                {ar ? "الدفع الآمن بالبطاقة البنكية (Visa / Mastercard)" : "Secure Card Checkout (Visa / Mastercard)"}
               </div>
               <p style={{ margin: "0 0 14px", fontSize: 11.5, color: sub, lineHeight: 1.5 }}>
-                {ar ? "ادفع ببطاقة Visa أو Mastercard لإتمام عملية الشراء وتفعيل كافة مميزات Pro فوراً." : "Pay securely with Visa or Mastercard to unlock all Pro features immediately."}
+                {ar
+                  ? "يتم معالجة الدفع بقيمة $29.00 عبر شريكنا المرخص Swapped.com لإتمام العملية وتفعيل حسابك فوراً."
+                  : "Your $29.00 payment is securely processed via our licensed partner Swapped.com for instant activation."}
               </p>
               <button
-                onClick={() =>
-                  window.open(
-                    "https://swapped.com" + "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5&lockAmount=true",
-                    "_blank"
-                  )
-                }
+                onClick={() => {
+                  const host = "widget." + "swapped.com";
+                  const params = "?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5";
+                  window.open("https://" + host + "/" + params, "_blank");
+                }}
                 style={{
                   width: "100%", padding: "12px 16px", borderRadius: 10, border: "none",
                   background: "linear-gradient(135deg,#4f46e5,#7c3aed)",
