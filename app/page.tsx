@@ -1,6 +1,203 @@
-"use client"; import React,{useState,useEffect} from "react"; export default function App(){ const [ar,setAr]=useState(false); const [dark,setDark]=useState(false); const [revs,setRevs]=useState([{id:1,n:"Sarah Jenkins",r:5,c:"Exceptional quality and super fast shipping!",d:"2h ago"},{id:2,n:"أحمد المنصور",r:5,c:"منتج ممتاز وتعامل راقي جداً!",d:"1d ago"}]); const [n,setN]=useState(""); const [c,setC]=useState(""); const [r,setR]=useState(5); const [pay,setPay]=useState(false); const [cp,setCp]=useState(false); useEffect(()=>{const s=localStorage.getItem("vouchly_v1");if(s)setRevs(JSON.parse(s));},[]); useEffect(()=>{localStorage.setItem("thiqah_v1",JSON.stringify(revs));},[revs]);
-const snip="<script src=\"https://vercel.app\" data-id=\"store_01\"></script>"; const add=(e:any)=>{e.preventDefault();if(!n.trim()||!c.trim())return;if(revs.length>=3){setPay(true);return;}setRevs([{id:Date.now(),n,r,c,d:ar?"الآن":"Just now"},...revs]);setN("");setC("");}; const del=(id:number)=>setRevs(revs.filter(x=>x.id!==id)); const avg=revs.length?(revs.reduce((a,b)=>a+b.r,0)/revs.length).toFixed(1):"5.0"; const bg=dark?"#0b1120":"#f1f5f9"; const card=dark?"#1e293b":"#ffffff"; const txt=dark?"#f8fafc":"#0f172a"; const sub=dark?"#94a3b8":"#64748b"; const brd=dark?"#334155":"#e2e8f0";
-return(<div dir={ar?"rtl":"ltr"} style={{minHeight:"100vh",background:bg,color:txt,fontFamily:"system-ui,-apple-system,sans-serif",paddingBottom:40,transition:"0.2s"}}><nav style={{background:card,borderBottom:`1px solid ${brd}`,padding:"12px 16px",position:"sticky",top:0,zIndex:10}}><div style={{maxWidth:620,margin:"auto",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{background:"linear-gradient(135deg,#4f46e5,#7c3aed)",color:"#fff",padding:"6px 10px",borderRadius:10,fontWeight:800}}>★</span><div><div style={{fontWeight:800,fontSize:16}}>{ar?"Vouchly":"Vouchly"}</div><div style={{fontSize:10,color:sub}}>{ar?"نظام التقييمات الذكي":"Smart Reviews SaaS"}</div></div></div><div style={{display:"flex",alignItems:"center",gap:6}}><button onClick={()=>setDark(!dark)} style={{background:bg,color:txt,border:`1px solid ${brd}`,padding:"7px 10px",borderRadius:9,fontSize:12,cursor:"pointer"}}>{dark?"☀️":"🌙"}</button><button onClick={()=>setAr(!ar)} style={{background:bg,color:txt,border:`1px solid ${brd}`,padding:"7px 10px",borderRadius:9,fontSize:11,fontWeight:600,cursor:"pointer"}}>{ar?"EN":"عربي"}</button><button onClick={()=>setPay(true)} style={{background:"linear-gradient(135deg,#4f46e5,#6366f1)",color:"#fff",border:"none",padding:"8px 12px",borderRadius:9,fontWeight:700,fontSize:11,cursor:"pointer"}}>{ar?"ترقية $29":"Pro $29"}</button></div></div></nav>
-<main style={{maxWidth:620,margin:"18px auto",padding:"0 14px"}}><div style={{background:"linear-gradient(135deg,#1e1b4b,#312e81)",color:"#fff",padding:20,borderRadius:16,marginBottom:16}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}><span style={{background:"rgba(255,255,255,0.15)",padding:"4px 10px",borderRadius:20,fontSize:11}}>{ar?`الباقة المجانية: ${revs.length}/3`:`Free Plan: ${revs.length}/3 Used`}</span><span style={{fontSize:11,color:"#a5b4fc"}}>{ar?"جاهز للعمل ✓":"Live Ready ✓"}</span></div><h2 style={{margin:"6px 0 4px",fontSize:18,fontWeight:800}}>{ar?"حوّل آراء عملائك إلى مبيعات حقيقية":"Turn Customer Reviews Into Sales"}</h2><p style={{margin:0,fontSize:12.5,color:"#cbd5e1"}}>{ar?"اجمع تقييمات موثقة واعرضها في متجرك بسطر كود واحد.":"Collect verified social proof and embed it anywhere in seconds."}</p></div><div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,marginBottom:16}}><div style={{background:card,border:`1px solid ${brd}`,padding:12,borderRadius:12,textAlign:"center"}}><div style={{fontSize:18,fontWeight:800,color:"#f59e0b"}}>{avg} ★</div><div style={{fontSize:11,color:sub}}>{ar?"متوسط التقييم":"Avg Rating"}</div></div><div style={{background:card,border:`1px solid ${brd}`,padding:12,borderRadius:12,textAlign:"center"}}><div style={{fontSize:18,fontWeight:800,color:"#10b981"}}>99%</div><div style={{fontSize:11,color:sub}}>{ar?"رضا العملاء":"Satisfaction"}</div></div><div style={{background:card,border:`1px solid ${brd}`,padding:12,borderRadius:12,textAlign:"center"}}><div style={{fontSize:18,fontWeight:800,color:"#6366f1"}}>{revs.length}</div><div style={{fontSize:11,color:sub}}>{ar?"التقييمات":"Reviews"}</div></div></div>
-<div style={{background:card,border:`1px solid ${brd}`,padding:"10px 14px",borderRadius:12,marginBottom:14,display:"flex",alignItems:"center",justifyContent:"space-between",fontSize:11.5}}><span>🟢 {ar?"متجر في دبي قام بالترقية إلى الباقة الدائمة":"Store in London just upgraded to Lifetime Pro"}</span><span style={{color:"#10b981",fontWeight:700}}>{ar?"منذ دقيقتين":"2m ago"}</span></div><div style={{textAlign:"center",marginBottom:16,padding:"10px",background:card,borderRadius:12,border:`1px solid ${brd}`}}><div style={{fontSize:10,color:sub,marginBottom:6,textTransform:"uppercase",letterSpacing:1}}>{ar?"متوافق بسلاسة مع جميع المنصات":"Works seamlessly with"}</div><div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:10,fontSize:11.5,fontWeight:700,color:txt}}><span>Shopify</span><span>•</span><span>WooCommerce</span><span>•</span><span>Salla</span><span>•</span><span>Zid</span><span>•</span><span>Webflow</span><span>•</span><span>HTML</span></div></div><form onSubmit={add} style={{background:card,padding:16,borderRadius:16,border:`1px solid ${brd}`,marginBottom:18}}><h3 style={{margin:"0 0 12px",fontSize:14,fontWeight:700}}>{ar?"أضف تقييماً جديداً (معاينة العميل)":"Add New Review (Customer View)"}</h3><div style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) 78px",gap:8,marginBottom:10}}><input placeholder={ar?"اسم العميل...":"Customer name..."} value={n} onChange={e=>setN(e.target.value)} style={{width:"100%",minWidth:0,boxSizing:"border-box",background:bg,color:txt,padding:"10px",border:`1px solid ${brd}`,borderRadius:10,fontSize:13}}/><select value={r} onChange={e=>setR(Number(e.target.value))} style={{width:"100%",minWidth:0,boxSizing:"border-box",background:bg,color:txt,padding:"10px 6px",border:`1px solid ${brd}`,borderRadius:10,fontSize:13}}><option value={5}>5 ★</option><option value={4}>4 ★</option><option value={3}>3 ★</option></select></div><textarea rows={2} placeholder={ar?"اكتب تجربتك هنا...":"Write your product review..."} value={c} onChange={e=>setC(e.target.value)} style={{width:"100%",boxSizing:"border-box",background:bg,color:txt,padding:"10px",border:`1px solid ${brd}`,borderRadius:10,fontSize:13,marginBottom:10,fontFamily:"inherit"}}/><button type="submit" style={{width:"100%",background:"#4f46e5",color:"#fff",border:"none",padding:11,borderRadius:10,fontWeight:700,fontSize:13,cursor:"pointer"}}>{ar?"نشر التقييم":"Publish Review"}</button></form><div style={{marginBottom:20}}><h3 style={{fontSize:14,fontWeight:700,marginBottom:10}}>{ar?`التقييمات المنشورة (${revs.length})`:`Published Reviews (${revs.length})`}</h3>{revs.map((x)=><div key={x.id} style={{background:card,padding:14,borderRadius:14,border:`1px solid ${brd}`,marginBottom:8}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}><div style={{display:"flex",alignItems:"center",gap:8}}><div style={{width:30,height:30,borderRadius:"50%",background:"#e0e7ff",color:"#4338ca",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:800,fontSize:13}}>{x.n[0]}</div><div><div style={{fontWeight:700,fontSize:13}}>{x.n} <span style={{color:"#10b981",fontSize:11}}>✓ {ar?"موثق":"Verified"}</span></div><div style={{fontSize:10,color:sub}}>{x.d}</div></div></div><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{color:"#f59e0b",fontSize:12}}>{"★".repeat(x.r)}</span><button onClick={()=>del(x.id)} style={{background:"transparent",border:"none",color:sub,cursor:"pointer",fontSize:13}}>🗑️</button></div></div><p style={{margin:0,fontSize:13,color:sub,lineHeight:1.5}}>{x.c}</p></div>)}</div>
-<div style={{background:card,border:`1px dashed ${brd}`,padding:14,borderRadius:14,marginBottom:18}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}><span style={{fontSize:12,fontWeight:700}}>{ar?"معاينة شكل التقييم في متجرك":"Live Store Widget Preview"}</span><span style={{fontSize:10,background:"#eef2ff",color:"#4f46e5",padding:"2px 8px",borderRadius:10,fontWeight:700}}>Powered by Vouchly ★</span></div><div style={{fontSize:12,color:sub}}>{ar?`تقييم المتجر: ${avg}/5 بناءً على ${revs.length} آراء موثقة`:`Store Rating: ${avg}/5 based on ${revs.length} verified reviews`}</div></div><div style={{background:card,border:`1px solid ${brd}`,padding:16,borderRadius:16,marginBottom:18}}><div style={{fontSize:14,fontWeight:800,marginBottom:10}}>{ar?"لماذا يختار التجار Vouchly؟":"Why Store Owners Choose Vouchly?"}</div><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,fontSize:11.5}}><div style={{background:bg,padding:10,borderRadius:10}}><div style={{color:sub,marginBottom:4}}>{ar?"التطبيقات التقليدية":"Other Review Apps"}</div><div style={{color:"#ef4444",fontWeight:700}}>✕ $29 – $49 / {ar?"شهرياً":"month"}</div><div style={{color:sub,fontSize:10.5,marginTop:2}}>{ar?"تبطئ سرعة المتجر":"Slows down store speed"}</div></div><div style={{background:"rgba(79,70,229,0.1)",border:"1px solid #6366f1",padding:10,borderRadius:10}}><div style={{color:"#6366f1",fontWeight:700,marginBottom:4}}>Vouchly Pro ★</div><div style={{color:"#10b981",fontWeight:800}}>✓ $29 {ar?"لمرة واحدة فقط":"one-time forever"}</div><div style={{color:txt,fontSize:10.5,marginTop:2}}>{ar?"خفيف وسريع جداً":"Ultra-fast 2KB widget"}</div></div></div></div><div style={{background:"#0f172a",color:"#f8fafc",padding:16,borderRadius:16}}><div style={{fontSize:13,fontWeight:700,marginBottom:4}}>{ar?"كود التضمين في متجرك":"Store Embed Snippet"}</div><p style={{margin:"0 0 10px",fontSize:11,color:"#94a3b8"}}>{ar?"انسخ السطر وألصقه في صفحة منتجك:":"Copy & paste into your store product page:"}</p><div style={{display:"flex",gap:6}}><input readOnly dir="ltr" value={snip} style={{flex:1,minWidth:0,background:"#1e293b",color:"#38bdf8",border:"1px solid #334155",padding:9,borderRadius:9,fontSize:11,fontFamily:"monospace"}}/><button onClick={()=>{navigator.clipboard.writeText(snip);setCp(true);setTimeout(()=>setCp(false),2000);}} style={{background:"#4f46e5",color:"#fff",border:"none",padding:"0 14px",borderRadius:9,fontWeight:700,fontSize:11,cursor:"pointer"}}>{cp?"✓":(ar?"نسخ":"Copy")}</button></div></div></main>{pay&&<div style={{position:"fixed",inset:0,background:"rgba(15,23,42,0.7)",backdropFilter:"blur(4px)",display:"flex",alignItems:"center",justifyContent:"center",padding:16,zIndex:50}}><div style={{background:card,color:txt,padding:22,borderRadius:20,maxWidth:360,width:"100%",border:`1px solid ${brd}`}}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}><h3 style={{margin:0,fontSize:17,fontWeight:800}}>{ar?"ترقية ثقة مدى الحياة":"Vouchly Lifetime Pro"}</h3><button onClick={()=>setPay(false)} style={{background:bg,color:txt,border:"none",width:28,height:28,borderRadius:"50%",cursor:"pointer"}}>✕</button></div><div style={{background:"#eef2ff",padding:14,borderRadius:14,textAlign:"center",marginBottom:12}}><div style={{fontSize:32,fontWeight:900,color:"#4f46e5"}}>$29</div><div style={{fontSize:11,color:"#4338ca",fontWeight:600}}>{ar?"دفعة واحدة مدى الحياة • بدون اشتراكات":"One-time payment • Unlimited reviews forever"}</div></div><div style={{fontSize:11,color:sub,marginBottom:12,lineHeight:1.6}}>✓ {ar?"تفعيل فوري ومباشر":"Instant activation"}<br/>✓ {ar?"إزالة قيود التقييمات بالكامل":"Remove all review limits"}<br/>✓ {ar?"ضمان استرجاع خلال 14 يوماً":"14-day money-back guarantee"}</div><button onClick={()=>alert("NOWPayments USDT Link")} style={{width:"100%",background:"#059669",color:"#fff",border:"none",padding:12,borderRadius:11,fontWeight:700,fontSize:12.5,marginBottom:8,cursor:"pointer"}}>{ar?"المسار 1: دفع مباشر USDT (TRC20/BEP20)":"Pay Directly with USDT (TRC20 / BEP20)"}</button><button onClick={()=>alert("PayMeGate Card Link")} style={{width:"100%",background:"#1e293b",color:"#fff",border:"none",padding:12,borderRadius:11,fontWeight:700,fontSize:12.5,cursor:"pointer"}}>{ar?"المسار 2: دفع بالبطاقة (Visa / Mastercard)":"Pay with Credit Card (Visa / Mastercard)"}</button></div></div>}</div>);}
+"use client";
+import React, { useState, useEffect } from "react";
+
+export default function App() {
+  const [ar, setAr] = useState(false);
+  const [dark, setDark] = useState(false);
+  const [revs, setRevs] = useState([
+    { id: 1, n: "Sarah Jenkins", r: 5, c: "Exceptional quality and super fast shipping!", d: "2h ago" },
+    { id: 2, n: "أحمد المنصور", r: 5, c: "منتج ممتاز وتعامل راقي جداً!", d: "1d ago" }
+  ]);
+  const [n, setN] = useState("");
+  const [c, setC] = useState("");
+  const [r, setR] = useState(5);
+  const [pay, setPay] = useState(false);
+  const [cp, setCp] = useState(false);
+
+  useEffect(() => {
+    const s = localStorage.getItem("vouchly_v1");
+    if (s) setRevs(JSON.parse(s));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("vouchly_v1", JSON.stringify(revs));
+  }, [revs]);
+
+  const snip = '<script src="https://vercel.app" data-id="store_01"></script>';
+  const payUrl = "https://nowpayments.io";
+
+  const add = (e: any) => {
+    e.preventDefault();
+    if (!n.trim() || !c.trim()) return;
+    if (revs.length >= 3) {
+      setPay(true);
+      return;
+    }
+    setRevs([{ id: Date.now(), n, r, c, d: ar ? "الآن" : "Just now" }, ...revs]);
+    setN("");
+    setC("");
+  };
+
+  const del = (id: number) => setRevs(revs.filter((x) => x.id !== id));
+  const avg = revs.length ? (revs.reduce((a, b) => a + b.r, 0) / revs.length).toFixed(1) : "5.0";
+
+  const bg = dark ? "#0b1120" : "#f1f5f9";
+  const card = dark ? "#1e293b" : "#ffffff";
+  const txt = dark ? "#f8fafc" : "#0f172a";
+  const sub = dark ? "#94a3b8" : "#64748b";
+  const brd = dark ? "#334155" : "#e2e8f0";
+
+  return (
+    <div dir={ar ? "rtl" : "ltr"} style={{ minHeight: "100vh", background: bg, color: txt, fontFamily: "system-ui,-apple-system,sans-serif", paddingBottom: 40, transition: "0.2s" }}>
+      <nav style={{ background: card, borderBottom: `1px solid ${brd}`, padding: "12px 16px", position: "sticky", top: 0, zIndex: 10 }}>
+        <div style={{ maxWidth: 620, margin: "auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ background: "linear-gradient(135deg,#4f46e5,#7c3aed)", color: "#fff", padding: "6px 10px", borderRadius: 10, fontWeight: 800 }}>★</span>
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 16 }}>Vouchly</div>
+              <div style={{ fontSize: 10, color: sub }}>{ar ? "نظام التقييمات الذكي" : "Smart Reviews SaaS"}</div>
+            </div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <button onClick={() => setDark(!dark)} style={{ background: bg, color: txt, border: `1px solid ${brd}`, padding: "7px 10px", borderRadius: 9, fontSize: 12, cursor: "pointer" }}>{dark ? "☀️" : "🌙"}</button>
+            <button onClick={() => setAr(!ar)} style={{ background: bg, color: txt, border: `1px solid ${brd}`, padding: "7px 10px", borderRadius: 9, fontSize: 11, fontWeight: 600, cursor: "pointer" }}>{ar ? "EN" : "عربي"}</button>
+            <button onClick={() => setPay(true)} style={{ background: "linear-gradient(135deg,#4f46e5,#6366f1)", color: "#fff", border: "none", padding: "8px 12px", borderRadius: 9, fontWeight: 700, fontSize: 11, cursor: "pointer" }}>{ar ? "ترقية $29" : "Pro $29"}</button>
+          </div>
+        </div>
+      </nav>
+
+      <main style={{ maxWidth: 620, margin: "18px auto", padding: "0 14px" }}>
+        <div style={{ background: "linear-gradient(135deg,#1e1b4b,#312e81)", color: "#fff", padding: 20, borderRadius: 16, marginBottom: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <span style={{ background: "rgba(255,255,255,0.15)", padding: "4px 10px", borderRadius: 20, fontSize: 11 }}>{ar ? `الباقة المجانية: ${revs.length}/3` : `Free Plan: ${revs.length}/3 Used`}</span>
+            <span style={{ fontSize: 11, color: "#a5b4fc" }}>{ar ? "جاهز للعمل ✓" : "Live Ready ✓"}</span>
+          </div>
+          <h2 style={{ margin: "6px 0 4px", fontSize: 18, fontWeight: 800 }}>{ar ? "حوّل آراء عملائك إلى مبيعات حقيقية" : "Turn Customer Reviews Into Sales"}</h2>
+          <p style={{ margin: 0, fontSize: 12.5, color: "#cbd5e1" }}>{ar ? "اجمع تقييمات موثقة واعرضها في متجرك بسطر كود واحد." : "Collect verified social proof and embed it anywhere in seconds."}</p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 16 }}>
+          <div style={{ background: card, border: `1px solid ${brd}`, padding: 12, borderRadius: 12, textAlign: "center" }}>
+            <div style={{ fontSize: 18, fontWeight: 800, color: "#f59e0b" }}>{avg} ★</div>
+            <div style={{ fontSize: 11, color: sub }}>{ar ? "متوسط التقييم" : "Avg Rating"}</div>
+          </div>
+          <div style={{ background: card, border: `1px solid ${brd}`, padding: 12, borderRadius: 12, textAlign: "center" }}>
+            <div style={{ fontSize: 18, fontWeight: 800, color: "#10b981" }}>99%</div>
+            <div style={{ fontSize: 11, color: sub }}>{ar ? "رضا العملاء" : "Satisfaction"}</div>
+          </div>
+          <div style={{ background: card, border: `1px solid ${brd}`, padding: 12, borderRadius: 12, textAlign: "center" }}>
+            <div style={{ fontSize: 18, fontWeight: 800, color: "#6366f1" }}>{revs.length}</div>
+            <div style={{ fontSize: 11, color: sub }}>{ar ? "التقييمات" : "Reviews"}</div>
+          </div>
+        </div>
+
+        <div style={{ background: card, border: `1px solid ${brd}`, padding: "10px 14px", borderRadius: 12, marginBottom: 14, display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 11.5 }}>
+          <span>🟢 {ar ? "متجر في دبي قام بالترقية إلى الباقة الدائمة" : "Store in London just upgraded to Lifetime Pro"}</span>
+          <span style={{ color: "#10b981", fontWeight: 700 }}>{ar ? "منذ دقيقتين" : "2m ago"}</span>
+        </div>
+
+        <div style={{ textAlign: "center", marginBottom: 16, padding: "10px", background: card, borderRadius: 12, border: `1px solid ${brd}` }}>
+          <div style={{ fontSize: 10, color: sub, marginBottom: 6, textTransform: "uppercase", letterSpacing: 1 }}>{ar ? "متوافق بسلاسة مع جميع المنصات" : "Works seamlessly with"}</div>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 10, fontSize: 11.5, fontWeight: 700, color: txt }}>
+            <span>Shopify</span><span>•</span><span>WooCommerce</span><span>•</span><span>Salla</span><span>•</span><span>Zid</span><span>•</span><span>Webflow</span><span>•</span><span>HTML</span>
+          </div>
+        </div>
+
+        <form onSubmit={add} style={{ background: card, padding: 16, borderRadius: 16, border: `1px solid ${brd}`, marginBottom: 18 }}>
+          <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 700 }}>{ar ? "أضف تقييماً جديداً (معاينة العميل)" : "Add New Review (Customer View)"}</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 78px", gap: 8, marginBottom: 10 }}>
+            <input placeholder={ar ? "اسم العميل..." : "Customer name..."} value={n} onChange={(e) => setN(e.target.value)} style={{ width: "100%", minWidth: 0, boxSizing: "border-box", background: bg, color: txt, padding: "10px", border: `1px solid ${brd}`, borderRadius: 10, fontSize: 13 }} />
+            <select value={r} onChange={(e) => setR(Number(e.target.value))} style={{ width: "100%", minWidth: 0, boxSizing: "border-box", background: bg, color: txt, padding: "10px 6px", border: `1px solid ${brd}`, borderRadius: 10, fontSize: 13 }}>
+              <option value={5}>5 ★</option>
+              <option value={4}>4 ★</option>
+              <option value={3}>3 ★</option>
+            </select>
+          </div>
+          <textarea rows={2} placeholder={ar ? "اكتب تجربتك هنا..." : "Write your product review..."} value={c} onChange={(e) => setC(e.target.value)} style={{ width: "100%", boxSizing: "border-box", background: bg, color: txt, padding: "10px", border: `1px solid ${brd}`, borderRadius: 10, fontSize: 13, marginBottom: 10, fontFamily: "inherit" }} />
+          <button type="submit" style={{ width: "100%", background: "#4f46e5", color: "#fff", border: "none", padding: 11, borderRadius: 10, fontWeight: 700, fontSize: 13, cursor: "pointer" }}>{ar ? "نشر التقييم" : "Publish Review"}</button>
+        </form>
+
+        <div style={{ marginBottom: 20 }}>
+          <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 10 }}>{ar ? `التقييمات المنشورة (${revs.length})` : `Published Reviews (${revs.length})`}</h3>
+          {revs.map((x) => (
+            <div key={x.id} style={{ background: card, padding: 14, borderRadius: 14, border: `1px solid ${brd}`, marginBottom: 8 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "#e0e7ff", color: "#4338ca", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13 }}>{x.n[0]}</div>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 13 }}>{x.n} <span style={{ color: "#10b981", fontSize: 11 }}>✓ {ar ? "موثق" : "Verified"}</span></div>
+                    <div style={{ fontSize: 10, color: sub }}>{x.d}</div>
+                  </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ color: "#f59e0b", fontSize: 12 }}>{"★".repeat(x.r)}</span>
+                  <button onClick={() => del(x.id)} style={{ background: "transparent", border: "none", color: sub, cursor: "pointer", fontSize: 13 }}>🗑️</button>
+                </div>
+              </div>
+              <p style={{ margin: 0, fontSize: 13, color: sub, lineHeight: 1.5 }}>{x.c}</p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ background: card, border: `1px dashed ${brd}`, padding: 14, borderRadius: 14, marginBottom: 18 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontSize: 12, fontWeight: 700 }}>{ar ? "معاينة شكل التقييم في متجرك" : "Live Store Widget Preview"}</span>
+            <span style={{ fontSize: 10, background: "#eef2ff", color: "#4f46e5", padding: "2px 8px", borderRadius: 10, fontWeight: 700 }}>Powered by Vouchly ★</span>
+          </div>
+          <div style={{ fontSize: 12, color: sub }}>{ar ? `تقييم المتجر: ${avg}/5 بناءً على ${revs.length} آراء موثقة` : `Store Rating: ${avg}/5 based on ${revs.length} verified reviews`}</div>
+        </div>
+
+        <div style={{ background: card, border: `1px solid ${brd}`, padding: 16, borderRadius: 16, marginBottom: 18 }}>
+          <div style={{ fontSize: 14, fontWeight: 800, marginBottom: 10 }}>{ar ? "لماذا يختار التجار Vouchly؟" : "Why Store Owners Choose Vouchly?"}</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 11.5 }}>
+            <div style={{ background: bg, padding: 10, borderRadius: 10 }}>
+              <div style={{ color: sub, marginBottom: 4 }}>{ar ? "التطبيقات التقليدية" : "Other Review Apps"}</div>
+              <div style={{ color: "#ef4444", fontWeight: 700 }}>✕ $29 – $49 / {ar ? "شهرياً" : "month"}</div>
+              <div style={{ color: sub, fontSize: 10.5, marginTop: 2 }}>{ar ? "تبطئ سرعة المتجر" : "Slows down store speed"}</div>
+            </div>
+            <div style={{ background: "rgba(79,70,229,0.1)", border: "1px solid #6366f1", padding: 10, borderRadius: 10 }}>
+              <div style={{ color: "#6366f1", fontWeight: 700, marginBottom: 4 }}>Vouchly Pro ★</div>
+              <div style={{ color: "#10b981", fontWeight: 800 }}>✓ $29 {ar ? "لمرة واحدة فقط" : "one-time forever"}</div>
+              <div style={{ color: txt, fontSize: 10.5, marginTop: 2 }}>{ar ? "خفيف وسريع جداً" : "Ultra-fast 2KB widget"}</div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ background: "#0f172a", color: "#f8fafc", padding: 16, borderRadius: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>{ar ? "كود التضمين في متجرك" : "Store Embed Snippet"}</div>
+          <p style={{ margin: "0 0 10px", fontSize: 11, color: "#94a3b8" }}>{ar ? "انسخ السطر وألصقه في صفحة منتجك:" : "Copy & paste into your store product page:"}</p>
+          <div style={{ display: "flex", gap: 6 }}>
+            <input readOnly dir="ltr" value={snip} style={{ flex: 1, minWidth: 0, background: "#1e293b", color: "#38bdf8", border: "1px solid #334155", padding: 9, borderRadius: 9, fontSize: 11, fontFamily: "monospace" }} />
+            <button onClick={() => { navigator.clipboard.writeText(snip); setCp(true); setTimeout(() => setCp(false), 2000); }} style={{ background: "#4f46e5", color: "#fff", border: "none", padding: "0 14px", borderRadius: 9, fontWeight: 700, fontSize: 11, cursor: "pointer" }}>{cp ? "✓" : (ar ? "نسخ" : "Copy")}</button>
+          </div>
+        </div>
+      </main>
+
+      {pay && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,0.7)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16, zIndex: 50 }}>
+          <div style={{ background: card, color: txt, padding: 22, borderRadius: 20, maxWidth: 360, width: "100%", border: `1px solid ${brd}` }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+              <h3 style={{ margin: 0, fontSize: 17, fontWeight: 800 }}>{ar ? "ترقية Vouchly مدى الحياة" : "Vouchly Lifetime Pro"}</h3>
+              <button onClick={() => setPay(false)} style={{ background: bg, color: txt, border: "none", width: 28, height: 28, borderRadius: "50%", cursor: "pointer" }}>✕</button>
+            </div>
+            <div style={{ background: "#eef2ff", padding: 14, borderRadius: 14, textAlign: "center", marginBottom: 12 }}>
+              <div style={{ fontSize: 32, fontWeight: 900, color: "#4f46e5" }}>$29</div>
+              <div style={{ fontSize: 11, color: "#4338ca", fontWeight: 600 }}>{ar ? "دفعة واحدة مدى الحياة • بدون اشتراكات" : "One-time payment • Unlimited reviews forever"}</div>
+            </div>
+            <div style={{ fontSize: 11, color: sub, marginBottom: 12, lineHeight: 1.6 }}>
+              ✓ {ar ? "تفعيل فوري ومباشر" : "Instant activation"}<br />
+              ✓ {ar ? "إزالة قيود التقييمات بالكامل" : "Remove all review limits"}<br />
+              ✓ {ar ? "ضمان استرجاع خلال 14 يوماً" : "14-day money-back guarantee"}
+            </div>
+            <button onClick={() => window.open(payUrl, "_blank")} style={{ width: "100%", background: "#059669", color: "#fff", border: "none", padding: 12, borderRadius: 11, fontWeight: 700, fontSize: 12.5, marginBottom: 8, cursor: "pointer" }}>
+              {ar ? "الدفع المباشر USDT / Crypto ($29)" : "Pay Directly with USDT / Crypto ($29)"}
+            </button>
+            <button onClick={() => window.open(payUrl, "_blank")} style={{ width: "100%", background: "#1e293b", color: "#fff", border: "none", padding: 12, borderRadius: 11, fontWeight: 700, fontSize: 12.5, cursor: "pointer" }}>
+              {ar ? "الدفع بالبطاقة أو العملات الرقمية" : "Pay with Card / Instant Checkout ($29)"}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
