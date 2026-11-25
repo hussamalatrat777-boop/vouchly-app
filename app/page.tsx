@@ -23,8 +23,9 @@ export default function App() {
     localStorage.setItem("vouchly_v1", JSON.stringify(revs));
   }, [revs]);
 
-  const snip = '<script src="https://vercel.app" data-id="store_01"></script>';
-  const payUrl = "https://nowpayments.io";
+  const snip = '<script src="https://vouchly-app-ruby.vercel.app" data-id="store_01"></script>';
+    const payUrl = "https://nowpayments.io/payment/?iid=4740015922";
+
 
   const add = (e: any) => {
     e.preventDefault();
