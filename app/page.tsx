@@ -103,7 +103,7 @@ export default function App() {
           </div>
         </div>
 
-        <form onSubmit={add} style={{ background: card, padding: 16, borderRadius: 16, border: `1px solid ${brd}`, marginBottom: 18 }}>
+                <form onSubmit={add} style={{ background: card, padding: 16, borderRadius: 16, border: `1px solid ${brd}`, marginBottom: 18 }}>
           <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 700 }}>{ar ? "أضف تقييماً جديداً (معاينة العميل)" : "Add New Review (Customer View)"}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 78px", gap: 8, marginBottom: 10 }}>
             <input placeholder={ar ? "اسم العميل..." : "Customer name..."} value={n} onChange={(e) => setN(e.target.value)} style={{ width: "100%", minWidth: 0, boxSizing: "border-box", background: bg, color: txt, padding: "10px", border: `1px solid ${brd}`, borderRadius: 10, fontSize: 13 }} />
@@ -123,7 +123,7 @@ export default function App() {
             <div key={x.id} style={{ background: card, padding: 14, borderRadius: 14, border: `1px solid ${brd}`, marginBottom: 8 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "#e0e7ff", color: "#4338ca", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13 }}>{x.n[0]}</div>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "#e0e7ff", color: "#4338ca", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13 }}>{x.n}</div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 13 }}>{x.n} <span style={{ color: "#10b981", fontSize: 11 }}>✓ {ar ? "موثق" : "Verified"}</span></div>
                     <div style={{ fontSize: 10, color: sub }}>{x.d}</div>
