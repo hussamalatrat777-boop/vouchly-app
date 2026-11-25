@@ -24,7 +24,8 @@ export default function App() {
   }, [revs]);
 
   const snip = '<script src="https://vouchly-app-ruby.vercel.app" data-id="store_01"></script>';
-    const payUrl = "https://nowpayments.io/payment/?iid=4740015922";
+      const payUrl = "https://widget.swapped.com/?baseCurrencyCode=USD&baseCurrencyAmount=29&currencyCode=TRX&walletAddress=TRiEGAhUdERsT4zhHkYwe9n7xThvdFdTM5";
+
 
 
   const add = (e: any) => {
@@ -186,15 +187,12 @@ export default function App() {
               <div style={{ fontSize: 11, color: "#4338ca", fontWeight: 600 }}>{ar ? "دفعة واحدة مدى الحياة • بدون اشتراكات" : "One-time payment • Unlimited reviews forever"}</div>
             </div>
             <div style={{ fontSize: 11, color: sub, marginBottom: 12, lineHeight: 1.6 }}>
-              ✓ {ar ? "تفعيل فوري ومباشر" : "Instant activation"}<br />
+                            ✓ {ar ? "تفعيل فوري ومباشر" : "Instant activation"}<br />
               ✓ {ar ? "إزالة قيود التقييمات بالكامل" : "Remove all review limits"}<br />
               ✓ {ar ? "ضمان استرجاع خلال 14 يوماً" : "14-day money-back guarantee"}
             </div>
-            <button onClick={() => window.open(payUrl, "_blank")} style={{ width: "100%", background: "#059669", color: "#fff", border: "none", padding: 12, borderRadius: 11, fontWeight: 700, fontSize: 12.5, marginBottom: 8, cursor: "pointer" }}>
-              {ar ? "الدفع المباشر USDT / Crypto ($29)" : "Pay Directly with USDT / Crypto ($29)"}
-            </button>
-            <button onClick={() => window.open(payUrl, "_blank")} style={{ width: "100%", background: "#1e293b", color: "#fff", border: "none", padding: 12, borderRadius: 11, fontWeight: 700, fontSize: 12.5, cursor: "pointer" }}>
-              {ar ? "الدفع بالبطاقة أو العملات الرقمية" : "Pay with Card / Instant Checkout ($29)"}
+            <button onClick={() => window.open(payUrl, "_blank")} style={{ width: "100%", background: "#4f46e5", color: "#fff", border: "none", padding: 13, borderRadius: 11, fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+              {ar ? "الدفع بالبطاقة الائتمانية (Visa / Mastercard) - $29" : "Pay with Credit Card (Visa / Mastercard) - $29"}
             </button>
           </div>
         </div>
